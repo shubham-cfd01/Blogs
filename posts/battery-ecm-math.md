@@ -128,6 +128,8 @@ $$
 
 $V_t$ jumps immediately by $I R_0$ when current switches off (R₀ drop disappears instantly), then recovers exponentially toward OCV as $V_1$ decays. The relaxation is a pure single exponential — the cleanest signal for estimating $R_1$ and $\tau_1$.
 
+When extracting $R_1$, $V_1(t_0)$ is the polarisation built up during the preceding pulse: $V_1(t_0) = I\,R_1\!\left[1 - e^{-t_p/\tau_1}\right]$, where $t_p$ is the pulse duration. This assumes the cell started that pulse from full rest ($V_1 = 0$) — the standard condition after a long equilibration.
+
 ---
 
 ## Discrete-time update for BMS implementation
