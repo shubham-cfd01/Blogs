@@ -20,8 +20,8 @@
 @layer components {
   .prose-article {
     font-family: var(--font-lora), Charter, 'Iowan Old Style', 'Apple Garamond', Baskerville, Georgia, serif;
-    font-size: 1.125rem;
-    line-height: 1.75;
+    font-size: 1.25rem;
+    line-height: 1.8;
   }
   .prose-article :where(h1, h2, h3, h4) {
     font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;

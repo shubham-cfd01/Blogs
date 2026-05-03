@@ -37,11 +37,11 @@ export default async function TagPage({ params }: Params) {
           </span>
           All posts
         </Link>
-        <h1 className="mt-6 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl">
+        <h1 className="mt-6 text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-5xl">
           <span className="text-indigo-600 dark:text-indigo-400">#</span>
           {decoded}
         </h1>
-        <p className="mt-3 text-gray-600 dark:text-gray-400">
+        <p className="mt-3 text-lg text-gray-600 dark:text-gray-400">
           {posts.length} {posts.length === 1 ? 'post' : 'posts'} tagged <span className="font-medium">{decoded}</span>.
         </p>
       </div>

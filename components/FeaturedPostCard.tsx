@@ -30,11 +30,11 @@ export default function FeaturedPostCard({ post }: { post: PostMeta }) {
             {formatted}
           </time>
         </div>
-        <h2 className="text-2xl font-bold tracking-tight text-gray-900 transition-colors group-hover:text-indigo-600 dark:text-gray-100 dark:group-hover:text-indigo-400 sm:text-3xl">
+        <h2 className="text-3xl font-bold tracking-tight text-gray-900 transition-colors group-hover:text-indigo-600 dark:text-gray-100 dark:group-hover:text-indigo-400 sm:text-4xl">
           {post.title}
         </h2>
         {post.description && (
-          <p className="mt-3 text-base leading-relaxed text-gray-600 dark:text-gray-400">
+          <p className="mt-4 text-lg leading-relaxed text-gray-600 dark:text-gray-400 sm:text-xl">
             {post.description}
           </p>
         )}

@@ -4,10 +4,8 @@ import Link from 'next/link';
 import { getAllSlugs, getPostBySlug } from '@/lib/posts';
 import { markdownToHtml } from '@/lib/markdown';
 import { readingTime } from '@/lib/reading-time';
-import { extractHeadings } from '@/lib/headings';
 import TagBadge from '@/components/TagBadge';
 import ReadingProgress from '@/components/ReadingProgress';
-import TableOfContents from '@/components/TableOfContents';
 import CodeCopyButtons from '@/components/CodeCopyButtons';
 import Cover from '@/components/Cover';
 
@@ -42,7 +40,6 @@ export default async function PostPage({ params }: Params) {
   const post = getPostBySlug(slug);
   const html = await markdownToHtml(post.content);
   const minutes = readingTime(post.content);
-  const headings = extractHeadings(post.content);
   const formatted = new Date(post.date).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
@@ -64,11 +61,11 @@ export default async function PostPage({ params }: Params) {
         </Link>
 
         <header className="mt-8 mb-10">
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl">
+          <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-5xl">
             {post.title}
           </h1>
           {post.description && (
-            <p className="mt-4 text-lg leading-relaxed text-gray-600 dark:text-gray-400">
+            <p className="mt-5 text-xl leading-relaxed text-gray-600 dark:text-gray-400 sm:text-2xl">
               {post.description}
             </p>
           )}
@@ -91,8 +88,6 @@ export default async function PostPage({ params }: Params) {
             <Cover src={post.cover} alt={post.title} priority />
           </div>
         )}
-
-        <TableOfContents headings={headings} />
 
         <div
           className="prose prose-article prose-gray max-w-none dark:prose-invert prose-headings:tracking-tight prose-a:text-indigo-600 prose-a:no-underline hover:prose-a:underline dark:prose-a:text-indigo-400 prose-blockquote:border-l-indigo-500 prose-blockquote:font-normal prose-blockquote:not-italic prose-img:rounded-lg"
