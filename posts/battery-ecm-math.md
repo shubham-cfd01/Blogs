@@ -133,7 +133,9 @@ $$
 V_t(t') = \mathrm{OCV} - \underbrace{A}_{\displaystyle =\,V_1(t_0)}\, e^{-t'/\tau_1}
 $$
 
-The fit returns $A$ and $\tau_1$ directly. If the pulse was long enough to saturate the RC branch ($t_p \gg \tau_1$), then $V_1(t_0) \approx I R_1$, so $R_1 = A / I$ 
+The fit returns $A$ and $\tau_1$ directly. If the pulse was long enough to saturate the RC branch ($t_p \gg \tau_1$), then $V_1(t_0) \approx I R_1$, so $R_1 = A / I$
+
+![ECM pulse response — current step and terminal voltage showing R₀ drop, RC charging, and RC decay](/images/ecm-pulse-response.svg)
 
 ---
 
