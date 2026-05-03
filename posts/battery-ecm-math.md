@@ -1,6 +1,6 @@
 ---
 title: 'Inside the ECM — Where the Equations Come From'
-date: 2026-05-04
+date: 2026-05-03
 description: A ground-up derivation of the 1-RC equivalent circuit model — from physical intuition through KVL and KCL to the analytical solution and its discrete-time form.
 #tags: [battery, ecm, modeling, math]
 published: true
