@@ -60,4 +60,15 @@
   margin: 1.5rem 0;
   overflow-x: auto;
   overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 4px;
+}
+
+/* prevent prose from clipping wide equations */
+.prose .katex-display {
+  max-width: 100%;
+}
+
+.katex-display > .katex {
+  white-space: nowrap;
 }
