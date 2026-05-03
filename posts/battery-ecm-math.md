@@ -92,6 +92,8 @@ $$
 
 The solution interpolates smoothly from $V_1(t_0)$ toward $I R_1$, with the transition speed set by $\tau_1$. This is exactly the exponential shape visible on every battery voltage trace.
 
+![ECM pulse response — current step and terminal voltage showing R₀ drop, RC charging, and RC decay](/images/ecm-pulse-response.svg)
+
 *Verification:* differentiating the master solution and substituting into Eq. B confirms it satisfies the ODE for all $t \geq t_0$. ✓
 
 ---
@@ -131,8 +133,6 @@ V_t(t') = \mathrm{OCV} - \underbrace{A}_{\displaystyle =\,V_1(t_0)}\, e^{-t'/\ta
 $$
 
 The fit returns $A$ and $\tau_1$ directly. If the pulse was long enough to saturate the RC branch ($t_p \gg \tau_1$), then $V_1(t_0) \approx I R_1$, so $R_1 = A / I$
-
-![ECM pulse response — current step and terminal voltage showing R₀ drop, RC charging, and RC decay](/images/ecm-pulse-response.svg)
 
 ---
 
