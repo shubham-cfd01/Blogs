@@ -54,11 +54,13 @@ Hybrid Pulse Power Characterization, per the INL battery test manual. At each SO
 
 Repeat at multiple temperatures (typically -10, 0, 25, 45 °C).
 
-![HPPC pulse — current and terminal voltage](/images/hppc.png)
+![Discharge–charge pulse pairs at three SOC levels](/images/pulse_pairs_3soc.png)
 
 ## Extracting parameters
 
 **OCV.** Take the voltage at the end of each 30-minute rest as OCV at that SOC and interpolate with a monotone cubic (PCHIP). Hysteresis is real — a few mV for NMC, larger for LFP.
+
+![OCV–SOC curve extracted from rest voltages at 25 °C](/images/ocv_soc_curve.png)
 
 **R0.** At pulse onset, voltage drops instantaneously:
 
@@ -81,3 +83,11 @@ V(t) = \mathrm{OCV} - R_1 \, i \, e^{-(t - t_0)/\tau_1}.
 $$
 
 Fit either window with nonlinear least squares. The rest window is usually cleaner — no current noise on top of the relaxation. Repeat at every SOC and temperature; the output is three maps, $R_0(\mathrm{SOC}, T)$, $R_1(\mathrm{SOC}, T)$, and $\tau_1(\mathrm{SOC}, T)$. Those maps *are* the ECM.
+
+![Extracted R0, R1, and τ1 as a function of SOC and temperature](/images/params_publication.png)
+
+## Validation
+
+With the maps in hand, simulate the model against a drive-cycle discharge and overlay the measured terminal voltage. A well-characterised 1-RC model typically lands within ±10 mV RMS across the full SOC range at the characterisation temperatures.
+
+![Simulated vs measured terminal voltage on a dynamic discharge profile](/images/voltage_comparison.png)
