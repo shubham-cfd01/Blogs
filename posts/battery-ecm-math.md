@@ -126,9 +126,13 @@ $$
 V_t(t') = \mathrm{OCV} - V_1(t_0)\,e^{-t'/\tau_1}
 $$
 
-$V_t$ jumps immediately by $I R_0$ when current switches off (R₀ drop disappears instantly), then recovers exponentially toward OCV as $V_1$ decays. The relaxation is a pure single exponential — the cleanest signal for estimating $R_1$ and $\tau_1$.
+$V_t$ jumps immediately by $I R_0$ when current switches off (R₀ drop disappears instantly), then recovers exponentially toward OCV as $V_1$ decays. In practice, $V_1(t_0)$ is unknown — it is what we are trying to find. So the equation is fitted to measured data with two free parameters:
 
-Fitting this curve gives amplitude $A$ and time constant $\tau_1$ directly. If the pulse was long enough to saturate the RC branch ($t_p \gg \tau_1$), then $V_1(t_0) \approx I R_1$, so $R_1 = A/I$ — no pulse duration needed.
+$$
+V_t(t') = \mathrm{OCV} - \underbrace{A}_{\displaystyle =\,V_1(t_0)}\, e^{-t'/\tau_1}
+$$
+
+The fit returns $A$ and $\tau_1$ directly. If the pulse was long enough to saturate the RC branch ($t_p \gg \tau_1$), then $V_1(t_0) \approx I R_1$, so $R_1 = A / I$ — no pulse duration needed.
 
 ---
 
