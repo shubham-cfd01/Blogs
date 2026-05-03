@@ -10,9 +10,9 @@ export default function Comments() {
     const script = document.createElement('script');
     script.src = 'https://giscus.app/client.js';
     script.setAttribute('data-repo', 'shubham-cfd01/Blogs');
-    script.setAttribute('data-repo-id', 'REPLACE_WITH_REPO_ID');
+    script.setAttribute('data-repo-id', 'R_kgDOSS2dpw');
     script.setAttribute('data-category', 'General');
-    script.setAttribute('data-category-id', 'REPLACE_WITH_CATEGORY_ID');
+    script.setAttribute('data-category-id', 'DIC_kwDOSS2dp84C8PWM');
     script.setAttribute('data-mapping', 'pathname');
     script.setAttribute('data-reactions-enabled', '0');
     script.setAttribute('data-emit-metadata', '0');
