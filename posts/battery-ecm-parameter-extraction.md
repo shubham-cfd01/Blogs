@@ -3,6 +3,7 @@ title: 'Battery ECM Model — Parameter Extraction'
 date: 2026-05-03
 description: A short, practical guide to extracting parameters for an Equivalent Circuit Model of a lithium-ion cell from HPPC pulse data.
 tags: [battery, ecm, modeling]
+published: true
 ---
 
 A short note on extracting parameters for an Equivalent Circuit Model (ECM) of a lithium-ion cell from pulse data. ECMs are the workhorse for any BMS, SOC estimator, or pack-level simulator that has to run in real time — small, fast, and accurate enough when the parameters are honest.
