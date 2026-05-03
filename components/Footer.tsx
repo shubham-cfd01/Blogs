@@ -1,7 +1,6 @@
 import Link from 'next/link';
 
 const socials = [
-  { href: 'https://github.com/shubham-cfd01', label: 'GitHub' },
   { href: 'https://www.linkedin.com/in/shubham-mishra-976458100/', label: 'LinkedIn' },
   { href: 'mailto:mishrashubhamrewa@gmail.com', label: 'Email' },
 ];
