@@ -47,8 +47,6 @@ Hybrid Pulse Power Characterization, per the INL battery test manual. At each SO
 
 Repeat at multiple temperatures (typically -10, 0, 25, 45 °C).
 
-![Discharge–charge pulse pairs at three SOC levels](/images/pulse_pairs_3soc.png)
-
 ## Extracting parameters
 
 **OCV.** Take the voltage at the end of each 30-minute rest as OCV at that SOC and interpolate with a monotone cubic (PCHIP). Hysteresis is real — a few mV for NMC, larger for LFP.
@@ -74,6 +72,7 @@ during the rest after the pulse,
 $$
 V(t) = \mathrm{OCV} - R_1 \, i \, e^{-(t - t_0)/\tau_1}.
 $$
+![Discharge–charge pulse pairs at three SOC levels](/images/pulse_pairs_3soc.png)
 
 Fit either window with nonlinear least squares. The rest window is usually cleaner — no current noise on top of the relaxation. Repeat at every SOC and temperature; the output is three maps, $R_0(\mathrm{SOC}, T)$, $R_1(\mathrm{SOC}, T)$, and $\tau_1(\mathrm{SOC}, T)$. Those maps *are* the ECM.
 
