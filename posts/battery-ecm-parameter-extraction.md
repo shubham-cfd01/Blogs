@@ -35,13 +35,6 @@ $$
 
 Pick a sign convention and never change it. I use *current positive on discharge*.
 
-## Test setup
-
-- Bidirectional cycler, 0.1% FS current, 0.1 mV voltage, 1 kHz logging.
-- 4-wire Kelvin sense, twisted pair.
-- Thermal chamber held to ±0.5 °C, T-type thermocouple on the can.
-- Equilibrate ≥1 hr before starting.
-
 ## HPPC procedure
 
 Hybrid Pulse Power Characterization, per the INL battery test manual. At each SOC step (10% across most of the range, 5% at the corners):
