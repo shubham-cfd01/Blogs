@@ -22,7 +22,15 @@ Three are standard:
 For 1-RC,
 
 $$
-\tau_1 = R_1 C_1, \quad \frac{dV_1}{dt} = -\frac{V_1}{\tau_1} + \frac{i(t)}{C_1}, \quad V(t) = \mathrm{OCV}(\mathrm{SOC}) - R_0 \, i(t) - V_1(t).
+\tau_1 = R_1 C_1
+$$
+
+$$
+\frac{dV_1}{dt} = -\frac{V_1}{\tau_1} + \frac{i(t)}{C_1}
+$$
+
+$$
+V(t) = \mathrm{OCV}(\mathrm{SOC}) - R_0 \, i(t) - V_1(t)
 $$
 
 Pick a sign convention and never change it. I use *current positive on discharge*.
