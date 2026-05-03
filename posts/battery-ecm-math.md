@@ -5,9 +5,6 @@ description: A ground-up derivation of the 1-RC equivalent circuit model — fro
 #tags: [battery, ecm, modeling, math]
 published: true
 ---
-
-The [parameter extraction post](/posts/battery-ecm-parameter-extraction) showed *which* equations to fit. This post derives *why* those equations are exactly right — from first principles, one step at a time.
-
 ## Three physical processes, three timescales
 
 When current flows through a lithium-ion cell, three processes activate simultaneously:
