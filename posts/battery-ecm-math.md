@@ -136,3 +136,13 @@ The fit returns $A$ and $\tau_1$ directly. If the pulse was long enough to satur
 
 ---
 
+## References
+
+1. G. L. Plett, *Battery Management Systems, Vol. I: Battery Modeling*, Artech House, 2015. — The standard graduate-level reference for ECM derivation, ODE solutions, and Kalman filter SOC estimation.
+
+2. G. L. Plett, "Extended Kalman filtering for battery management systems of LiPB-based HEV battery packs — Part 2: Modeling and identification," *Journal of Power Sources*, vol. 134, no. 2, pp. 262–276, 2004. — Original paper connecting the ECM discrete update to the EKF prediction step.
+
+3. M. Chen and G. A. Rincon-Mora, "Accurate electrical battery model capable of predicting runtime and I–V performance," *IEEE Transactions on Energy Conversion*, vol. 21, no. 2, pp. 504–511, 2006. — Widely cited ECM paper; good comparison of topologies.
+
+4. X. Hu, S. Li, and H. Peng, "A comparative study of equivalent circuit models for Li-ion batteries," *Journal of Power Sources*, vol. 198, pp. 359–367, 2012. — Systematic comparison of Rint, 1-RC, and 2-RC accuracy across SOC and temperature.
+
