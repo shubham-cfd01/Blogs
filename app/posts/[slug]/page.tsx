@@ -103,7 +103,7 @@ export default async function PostPage({ params }: Params) {
             <LikeButton slug={post.slug} />
           </div>
           <h2 className="mb-6 text-lg font-semibold text-gray-900 dark:text-gray-100">Comments</h2>
-          <Comments />
+          <Comments slug={post.slug} />
         </div>
       </article>
     </>
