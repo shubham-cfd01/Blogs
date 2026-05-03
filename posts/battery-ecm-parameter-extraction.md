@@ -46,6 +46,7 @@ Hybrid Pulse Power Characterization, per the INL battery test manual. At each SO
 5. Discharge to the next SOC step
 
 Repeat at multiple temperatures (typically -10, 0, 25, 45 °C).
+![Simulated vs measured terminal voltage on a dynamic discharge profile](/images/voltage_comparison.png)
 
 ## Extracting parameters
 
@@ -82,4 +83,4 @@ Fit either window with nonlinear least squares. The rest window is usually clean
 
 With the maps in hand, simulate the model against a drive-cycle discharge and overlay the measured terminal voltage. A well-characterised 1-RC model typically lands within ±10 mV RMS across the full SOC range at the characterisation temperatures.
 
-![Simulated vs measured terminal voltage on a dynamic discharge profile](/images/voltage_comparison.png)
+
