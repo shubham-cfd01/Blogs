@@ -83,7 +83,7 @@ Equations A and B together **fully describe the 1-RC ECM**. There is nothing els
 Eq. B is a first-order linear ODE with constant coefficients. For piecewise-constant current — constant over any interval $[t_0,\, t]$ — the exact solution is:
 
 $$
-\boxed{V_1(t) = V_1(t_0)\,e^{-(t-t_0)/\tau_1} + I\,R_1\!\left[1 - e^{-(t-t_0)/\tau_1}\right]} \tag{Master}
+\boxed{V_1(t) = V_1(t_0)\,e^{-(t-t_0)/\tau_1} + I\,R_1\!\left[1 - e^{-(t-t_0)/\tau_1}\right]}
 $$
 
 **Term 1** — initial condition memory: decays exponentially at rate $1/\tau_1$. At $t = t_0$ it equals $V_1(t_0)$; as $t \to \infty$ it vanishes.
