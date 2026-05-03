@@ -8,6 +8,8 @@ import TagBadge from '@/components/TagBadge';
 import ReadingProgress from '@/components/ReadingProgress';
 import CodeCopyButtons from '@/components/CodeCopyButtons';
 import Cover from '@/components/Cover';
+import LikeButton from '@/components/LikeButton';
+import Comments from '@/components/Comments';
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -95,6 +97,14 @@ export default async function PostPage({ params }: Params) {
         />
 
         <CodeCopyButtons />
+
+        <div className="mt-12 border-t border-gray-200 pt-10 dark:border-gray-800">
+          <div className="mb-10 flex justify-center">
+            <LikeButton slug={post.slug} />
+          </div>
+          <h2 className="mb-6 text-lg font-semibold text-gray-900 dark:text-gray-100">Comments</h2>
+          <Comments />
+        </div>
       </article>
     </>
   );
