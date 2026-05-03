@@ -4,7 +4,6 @@ import ThemeToggle from './ThemeToggle';
 const links = [
   { href: '/', label: 'Home' },
   { href: '/profile', label: 'Profile' },
-  { href: 'https://github.com/shubham-cfd01', label: 'GitHub', external: true },
   { href: 'https://www.linkedin.com/in/shubham-mishra-976458100/', label: 'LinkedIn', external: true },
 ];
 
