@@ -132,26 +132,7 @@ $$
 V_t(t') = \mathrm{OCV} - \underbrace{A}_{\displaystyle =\,V_1(t_0)}\, e^{-t'/\tau_1}
 $$
 
-The fit returns $A$ and $\tau_1$ directly. If the pulse was long enough to saturate the RC branch ($t_p \gg \tau_1$), then $V_1(t_0) \approx I R_1$, so $R_1 = A / I$ — no pulse duration needed.
+The fit returns $A$ and $\tau_1$ directly. If the pulse was long enough to saturate the RC branch ($t_p \gg \tau_1$), then $V_1(t_0) \approx I R_1$, so $R_1 = A / I$ 
 
 ---
 
-## Discrete-time update for BMS implementation
-
-In real operation the current is arbitrary and sampled at fixed interval $\Delta t$. Applying the master solution over each sample interval exactly — no approximation — gives:
-
-$$
-\boxed{V_1[k+1] = V_1[k]\,e^{-\Delta t/\tau_1} + I[k]\,R_1\!\left[1 - e^{-\Delta t/\tau_1}\right]}
-$$
-
-$$
-\mathrm{SOC}[k+1] = \mathrm{SOC}[k] - \frac{I[k]\,\Delta t}{Q_{\mathrm{nom}}}
-$$
-
-$$
-V_t[k] = \mathrm{OCV}\!\left(\mathrm{SOC}[k]\right) - I[k]\,R_0 - V_1[k]
-$$
-
-This update is **exact for piecewise-constant current** — not an Euler approximation. It is stable for any $\Delta t$, including $\Delta t \gg \tau_1$, and costs one `exp()` evaluation per step. This is the prediction equation inside an Extended Kalman Filter (EKF) SOC estimator: $V_t[k]$ is the model prediction; the residual against measured terminal voltage drives the state correction.
-
-Euler ($V_1[k+1] \approx V_1[k] + \Delta t \cdot \dot{V}_1[k]$) accumulates error when $\Delta t/\tau_1$ is not small. The exact exponential form eliminates this at identical computational cost.
