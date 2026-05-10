@@ -36,13 +36,20 @@ $$
 
 The internal energy splits as $U_{sys} = U_{chem} + U_{therm}$. To evaluate $dU_{chem}/dt$, we need the reaction rate — moles of lithium transferred per second.
 
-**Faraday's Law.** The Faraday constant $F = N_A e = 96\,485$ C mol⁻¹ is the charge per mole of electrons. For the intercalation half-reaction $\text{Li} \to \text{Li}^+ + e^-$, one electron transfers per lithium atom ($n = 1$). Faraday's Law, $Q = nFN$, differentiated:
+**Faraday's Law.** Four symbols:
+
+- $N_A = 6.022\times10^{23}$ mol⁻¹ — Avogadro's number
+- $e = 1.602\times10^{-19}$ C — charge on one electron
+- $n$ — electrons released per formula unit; $\text{Li} \to \text{Li}^+ + e^-$ gives $n = 1$ for all Li-ion chemistries
+- $N_{Li}$ — moles of lithium transferred so far (variable)
+
+The Faraday constant is the charge carried by one mole of electrons: $F = N_A e = 96\,485$ C mol⁻¹. Total charge passed equals electrons per Li atom times charge per mole times moles transferred: $Q = n F N_{Li}$. Differentiating with respect to time ($dQ/dt = I$):
 
 $$
-\dot{n} = \frac{I}{nF} \tag{2}
+\dot{N}_{Li} = \frac{I}{nF} \tag{2}
 $$
 
-Each mole of lithium transferred changes chemical energy by $\Delta H_{rxn}$. For solid/liquid phases $P\Delta V \approx 0$, so $\Delta U_{rxn} \approx \Delta H_{rxn}$. Defining $\dot{H}_{rxn} \equiv -(I/nF)\,\Delta H_{rxn} > 0$ (positive because discharge is exothermic):
+Each mole of lithium transferred changes chemical energy by $\Delta H_{rxn}$. For solid/liquid phases $P\Delta V \approx 0$, so $\Delta U_{rxn} \approx \Delta H_{rxn}$. Defining $\dot{H}_{rxn} \equiv -\dot{N}_{Li}\,\Delta H_{rxn} = -(I/nF)\,\Delta H_{rxn} > 0$ (positive because discharge is exothermic):
 
 $$
 \frac{dU_{chem}}{dt} = -\dot{H}_{rxn} \tag{3}
@@ -88,7 +95,7 @@ $$
 \Delta H_{rxn} = -nFE_{oc} + T \cdot nF\frac{\partial E_{oc}}{\partial T}
 $$
 
-Multiply by $-I/nF$ (the molar flow rate, Eq. 2); $nF$ cancels:
+Multiply by $-\dot{N}_{Li} = -I/nF$ (Eq. 2); $nF$ cancels:
 
 $$
 \dot{H}_{rxn} = I\!\left[E_{oc} - T\frac{\partial E_{oc}}{\partial T}\right] \tag{8}
