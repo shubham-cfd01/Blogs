@@ -1,7 +1,6 @@
 ---
 title: 'Deriving the Bernardi Heat Generation Equation from First Principles'
 date: 2026-05-10
-description: Ground-up derivation of the Bernardi (1985) battery heat generation equation, with every term defined and every assumption stated.
 #tags: [battery, thermal, modeling, thermodynamics]
 published: true
 ---
