@@ -1,162 +1,190 @@
 ---
 title: 'Deriving the Bernardi Heat Generation Equation from First Principles'
 date: 2026-05-10
-description: A ground-up derivation of the Bernardi (1985) heat generation equation — from the First Law through Faraday's Law, the Nernst equation, and the Maxwell relation — with every term defined and every assumption stated.
+description: Derivation of the Bernardi (1985) battery heat generation equation — from the First Law through Faraday's Law, the Nernst equation, and the Maxwell relation — with every term defined and every assumption stated.
 tags: [battery, thermal, modeling, thermodynamics]
 published: true
 ---
 
-Every lithium-ion battery generates heat during operation. That heat feeds back into the same chemistry that produced it, accelerating degradation and — at the extremes — triggering thermal runaway. The Bernardi equation (1985) is the foundation of almost all battery thermal models:
+Before 1985, battery thermal models used Joule heating: $\dot{Q} \approx I^2 R_{int}$. The formula is simple, quadratic in current, and always positive — reassuringly tidy. It is also wrong by 20–50% at low C-rates, and wrong in the wrong direction at some states of charge, where the cell partially cools the environment rather than heating it.
+
+The error comes from ignoring the entropy of the electrochemical reaction. Bernardi, Pawlikowski, and Newman (1985) fixed this by applying the First Law rigorously to the cell and expressing every quantity in measurable terminal variables. The result is:
 
 $$
 q = \frac{I}{V_b}(E_{oc} - V_T) - \frac{I}{V_b}\,T\frac{\partial E_{oc}}{\partial T}
 $$
 
-Every symbol here is measurable at the cell terminals. The derivation runs as two parallel tracks that meet at this equation.
+where $q$ is the volumetric heat generation rate (W m⁻³), $I$ is current (A, positive during discharge), $V_b$ is the cell volume (m³), $E_{oc}$ is the open-circuit voltage (V), $V_T$ is the terminal voltage under load (V), $T$ is temperature (K), and $\partial E_{oc}/\partial T$ is the slope of OCV with temperature at fixed state of charge (V K⁻¹). Everything is measurable at the terminals; no internal probes are needed.
 
-**Track A** (energy balance): apply the First Law, use Faraday's Law to connect current to the reaction rate, and arrive at a master equation $\dot{Q}_{gen} = \dot{H}_{rxn} - V_T I$. This tells us that heat generated equals enthalpy released minus work extracted — but $\dot{H}_{rxn}$ is still unknown.
-
-**Track B** (thermodynamics): use Gibbs free energy, the Nernst equation, and the Maxwell relation to express $\dot{H}_{rxn}$ entirely in measurable electrical quantities.
-
-Substituting Track B into Track A gives Bernardi.
+The derivation has two threads. The first is an energy balance that determines where the chemical energy goes. The second is a thermodynamic argument that expresses the enthalpy of reaction in electrical terms. They converge at the equation above.
 
 ---
 
-## Track A — Energy balance
+## The system and its energy
 
-Fix the system boundary as the entire battery cell. Two things cross it: electrons carry electrical work out through the load, and heat flows across the surface. All atoms and ions stay inside.
+Fix the boundary at the cell surface: anode, separator, cathode, electrolyte, and casing all inside. Two things cross this boundary — electrons carry electrical work out through the load, and heat exchanges with the thermal environment. All atoms and ions stay inside.
 
-The cell's internal energy has two parts: $U_{chem}$ (energy stored in the lithium intercalation state — decreases during discharge) and $U_{therm}$ (vibrational energy of all atoms — increases as the cell warms). The First Law in rate form, with $\dot{Q}_{in}$ as heat into the cell and $V_T I$ as electrical work leaving:
+The internal energy of the cell is:
+
+$$
+U_{sys} = U_{chem} + U_{therm}
+$$
+
+$U_{chem}$ is the energy stored in the lithium intercalation state — the free energy difference between lithium sitting in graphite and lithium sitting in the cathode lattice. It decreases during discharge as lithium moves from high to low chemical potential. $U_{therm}$ is the vibrational kinetic energy of all atoms — what temperature measures. A resistor has only $U_{therm}$; a battery has both, and conflating them is the source of the $I^2 R$ error.
+
+The First Law in rate form, with $\dot{Q}_{in}$ as heat flowing into the cell and $V_T I$ as electrical work leaving:
 
 $$
 \frac{dU_{sys}}{dt} = \dot{Q}_{in} - V_T I \tag{1}
 $$
 
-To make progress we need $dU_{chem}/dt$ — the rate at which chemical energy is being consumed. That rate is set by how fast lithium moves between electrodes, which is set entirely by the current.
+$\dot{Q}_{in}$ is negative during normal discharge — the cell is warmer than the environment, so heat flows out. The sign feels backwards until you work through the algebra, at which point it cancels correctly.
 
-### Faraday's Law gives the molar flow rate
+---
 
-The Faraday constant is not empirical: one mole of electrons carries $F = N_A \cdot e = 96\,485$ C mol⁻¹. For the intercalation reaction $\text{Li} \to \text{Li}^+ + e^-$, one electron transfers per lithium atom ($n = 1$). Faraday's Law of Electrolysis (1834) states $Q = nFN$ where $N$ is moles transferred. Differentiating:
+## Connecting current to reaction rate
+
+To evaluate $dU_{sys}/dt$ we need the rate at which lithium transfers between electrodes — how many moles per second. That rate is determined entirely by the electric current.
+
+The Faraday constant is not an empirical number. One mole of electrons carries:
 
 $$
-\boxed{\dot{n} = \frac{I}{nF}} \tag{2}
+F = N_A \cdot e = 6.022\times10^{23} \times 1.602\times10^{-19} = 96\,485\;\text{C mol}^{-1}
 $$
 
-At 3 A: $\dot{n} = 3/96\,485 \approx 31$ micromoles of lithium per second.
+For the intercalation reaction $\text{Li} \to \text{Li}^+ + e^-$, exactly one electron transfers per lithium atom, so $n = 1$ for all lithium-ion chemistries. Faraday's Law of Electrolysis (1834) states that the total charge $Q$ passed is $Q = n F N$, where $N$ is moles of lithium transferred. Differentiating:
 
-### Master equation
+$$
+\dot{n} = \frac{I}{nF} \tag{2}
+$$
 
-Each mole of lithium released changes chemical energy by $\Delta H_{rxn}$ (using $\Delta U_{rxn} \approx \Delta H_{rxn}$ for solid/liquid electrodes where $P\Delta V \approx 0$). Defining $\dot{H}_{rxn} \equiv -(I/nF)\,\Delta H_{rxn} > 0$:
+At 3 A this gives $\dot{n} = 3/96\,485 \approx 31$ micromoles of lithium per second.
+
+---
+
+## The energy balance master equation
+
+Each mole of lithium transferred changes the cell's chemical energy by $\Delta H_{rxn}$ (J mol⁻¹). For solid and liquid phases — the electrodes and electrolyte — volume changes during intercalation are less than 0.1% volumetric, so $P\Delta V \approx 0$ and internal energy and enthalpy are interchangeable: $\Delta U_{rxn} \approx \Delta H_{rxn}$. Combining with Eq. 2 and defining $\dot{H}_{rxn} \equiv -(I/nF)\,\Delta H_{rxn} > 0$ (positive because discharge is exothermic, $\Delta H_{rxn} < 0$):
 
 $$
 \frac{dU_{chem}}{dt} = -\dot{H}_{rxn} \tag{3}
 $$
 
-At steady state ($dT/dt = 0$), $dU_{sys}/dt = dU_{chem}/dt = -\dot{H}_{rxn}$. Substitute into Eq. 1 and define $\dot{Q}_{gen} = -\dot{Q}_{in}$ (positive heat generated):
+At steady state — the cell has reached a stable operating temperature, so $dT/dt = 0$ and $dU_{therm}/dt = 0$ — the internal energy change is purely chemical: $dU_{sys}/dt = -\dot{H}_{rxn}$. Substituting into Eq. 1 and writing $\dot{Q}_{gen} = -\dot{Q}_{in}$ (heat generated, always positive):
 
 $$
-\boxed{\dot{Q}_{gen} = \dot{H}_{rxn} - V_T I} \tag{4}
+\dot{Q}_{gen} = \dot{H}_{rxn} - V_T I \tag{4}
 $$
 
-This master equation says: heat generated = all chemical energy released − electrical work extracted to the load. Track A stalls here — $\dot{H}_{rxn}$ is known to exist but not yet measurable.
+Heat generated equals total enthalpy released by the reaction minus electrical work extracted to the load. A quick check: for an 18650 NMC cell at 2 A with $E_{oc} = 3.80$ V and $V_T = 3.65$ V, the gap $(E_{oc} - V_T) \times I = 0.15 \times 2 = 0.30$ W is the heat generated — the energy the cell tried to deliver but couldn't because of internal losses.
+
+Eq. 4 is the master equation. The problem is that $\dot{H}_{rxn}$ is not directly measurable. The next step expresses it in terms of OCV and its temperature slope.
 
 ---
 
-## Track B — Thermodynamics
+## Voltage is Gibbs energy per coulomb
 
-### OCV is Gibbs energy per coulomb (Nernst)
+When lithium moves from the high-potential anode to the low-potential cathode, it releases chemical free energy. At zero current — open circuit — no energy is lost to resistance or kinetics, so the cell voltage is a direct thermodynamic measure of the Gibbs free energy change of the reaction.
 
-The **physical intuition** first: voltage is chemical potential in electrical units. When lithium moves from the high-potential anode to the low-potential cathode, it "falls" through a chemical potential difference that drives electrons through the external circuit. At zero current — open circuit — no energy is lost to resistance or kinetics, so the measured voltage is a perfect thermodynamic ruler of that potential difference.
-
-Formally, the Clausius inequality bounds the maximum work a reaction can do at constant $T$ and $P$:
+Formally, the Clausius inequality limits the maximum non-PV work a reaction can deliver at constant temperature and pressure:
 
 $$
 W'_{max} = -\Delta G_{rxn} \tag{5}
 $$
 
-Per mole of reaction, $n$ moles of electrons pass through voltage $E_{oc}$, so $W'_{max} = nFE_{oc}$. Setting these equal:
+For spontaneous discharge $\Delta G_{rxn} < 0$, so $W'_{max} > 0$. Per mole of reaction, $n$ moles of electrons pass through voltage $E_{oc}$, carrying charge $Q_{mol} = nF$ coulombs per mole. The maximum electrical work per mole is charge times voltage: $W'_{max} = nFE_{oc}$. Equating with Eq. 5:
 
 $$
-\boxed{E_{oc} = \frac{-\Delta G_{rxn}}{nF}} \tag{6}
+E_{oc} = \frac{-\Delta G_{rxn}}{nF} \tag{6}
 $$
 
-Units check: $\text{J mol}^{-1}/(\text{C mol}^{-1}) = \text{J/C} = \text{V}$. OCV in volts is Gibbs energy per coulomb of charge transferred. The OCV curve you measure sweeping through SOC is this equation traced continuously as the reaction quotient $Q_r = a_\text{products}/a_\text{reactants}$ shifts with lithium stoichiometry.
+Units: $\text{J mol}^{-1}/(\text{C mol}^{-1}) = \text{J C}^{-1} = \text{V}$. A volt is a joule per coulomb; OCV in volts is Gibbs energy per coulomb of charge transferred.
 
-### OCV slope measures reaction entropy (Maxwell relation)
-
-Since $G = H - TS$, the Gibbs relation at constant pressure gives the exact identity:
-
-$$
-\left(\frac{\partial G}{\partial T}\right)_P = -S \implies \left(\frac{\partial \Delta G_{rxn}}{\partial T}\right)_P = -\Delta S_{rxn}
-$$
-
-Substituting Eq. 6 ($\Delta G_{rxn} = -nFE_{oc}$):
-
-$$
-\boxed{\frac{\partial E_{oc}}{\partial T} = \frac{\Delta S_{rxn}}{nF}} \tag{7}
-$$
-
-The slope of OCV versus temperature at fixed SOC directly measures the reaction entropy. In practice: charge to a target SOC, rest until equilibrium, record OCV at two temperatures, divide $\Delta E_{oc}$ by $\Delta T$. No calorimetry needed.
-
-### $\Delta H_{rxn}$ in measurable form
-
-From $\Delta G_{rxn} = \Delta H_{rxn} - T\,\Delta S_{rxn}$, substitute Eq. 6 and Eq. 7:
-
-$$
-\Delta H_{rxn} = -nFE_{oc} + T\cdot nF\frac{\partial E_{oc}}{\partial T}
-$$
-
-Multiply by $-I/nF$ to get the rate form $\dot{H}_{rxn} = -(I/nF)\,\Delta H_{rxn}$, and $nF$ cancels:
-
-$$
-\boxed{\dot{H}_{rxn} = I\!\left[E_{oc} - T\frac{\partial E_{oc}}{\partial T}\right]} \tag{8}
-$$
-
-Everything is now electrically measurable: current, OCV after rest, temperature, OCV slope over temperature. Track B is complete.
+The OCV curve you measure by sweeping slowly through SOC is this equation traced continuously as the ratio of product to reactant activities changes with lithium stoichiometry. The 59 mV/decade rule follows from the Nernst equation: $E_{oc} = E^0 - (RT/nF)\ln Q_r$, where the thermal voltage $RT/nF = 25.69$ mV at 25 °C and a tenfold change in concentration ratio shifts OCV by $25.69 \times \ln 10 = 59.2$ mV.
 
 ---
 
-## Convergence: substituting into the master equation
+## The OCV slope measures reaction entropy
 
-Write $\dot{Q}_{gen} = q\cdot V_b$ (distributing heat over the cell volume $V_b$). Substitute Eq. 8 into Eq. 4 and divide by $V_b$:
+Since $G = H - TS$, the Gibbs free energy depends on temperature. The exact thermodynamic identity at constant pressure:
 
 $$
-\boxed{q = \underbrace{\frac{I}{V_b}(E_{oc} - V_T)}_{q_{irr}} \;-\; \underbrace{\frac{I}{V_b}\,T\frac{\partial E_{oc}}{\partial T}}_{q_{rev}}} \tag{9}
+\left(\frac{\partial G}{\partial T}\right)_P = -S
 $$
 
-This is the **Bernardi equation** (1985).
+Applied to the reaction, $(\partial \Delta G_{rxn}/\partial T)_P = -\Delta S_{rxn}$. Substituting Eq. 6:
+
+$$
+\frac{\partial E_{oc}}{\partial T} = \frac{\Delta S_{rxn}}{nF} \tag{7}
+$$
+
+The slope of OCV versus temperature at fixed SOC is a direct measure of the reaction entropy. Measuring it requires only a voltmeter and a thermostat: charge to the target SOC, rest until equilibrium, record OCV at two temperatures, divide $\Delta E_{oc}$ by $\Delta T$. No calorimetry. The sign is chemistry- and SOC-dependent — for graphite/NMC it changes sign two or three times across the SOC range.
 
 ---
 
-## The two terms
+## Enthalpy from electrical measurements alone
 
-**Irreversible heat $q_{irr}$** — the gap $(E_{oc} - V_T)$ is the total overpotential: ohmic resistance, charge-transfer activation energy at the electrode surface, and concentration polarisation from lithium depletion near the electrode. Every mechanism converts energy to heat. Since $(E_{oc} - V_T) \approx IR_{int}$, we have $q_{irr} \propto I^2$ — the Joule heating quadratic. Always non-negative.
+From $\Delta G_{rxn} = \Delta H_{rxn} - T\,\Delta S_{rxn}$, substitute Eq. 6 ($\Delta G_{rxn} = -nFE_{oc}$) and Eq. 7 ($\Delta S_{rxn} = nF\,\partial E_{oc}/\partial T$):
 
-**Reversible heat $q_{rev}$** — not a dissipation loss. It is thermodynamically required heat exchange due to the reaction's entropy change (from the Clausius proof, $Q_{rev} = T\,\Delta S_{rxn}$). A cell with zero internal resistance still has it. It scales linearly with $I$ — dominating over the quadratic $q_{irr}$ at low C-rates — and **its sign depends on SOC**:
+$$
+\Delta H_{rxn} = -nFE_{oc} + T \cdot nF\frac{\partial E_{oc}}{\partial T}
+$$
 
-| $\partial E_{oc}/\partial T$ | Physical meaning | Effect |
+Multiply by $-I/nF$ (the molar flow rate from Eq. 2) to convert to a power:
+
+$$
+\dot{H}_{rxn} = I\!\left[E_{oc} - T\frac{\partial E_{oc}}{\partial T}\right] \tag{8}
+$$
+
+$nF$ cancels, and every quantity on the right is electrically measurable: current from an ammeter, OCV from a voltmeter after the cell has rested, temperature from a thermocouple, and the entropic coefficient from potentiometry at two temperatures.
+
+---
+
+## The Bernardi equation
+
+Write $\dot{Q}_{gen} = q \cdot V_b$ to express heat generation per unit volume. Substitute Eq. 8 into the master equation (Eq. 4) and divide by $V_b$:
+
+$$
+q \cdot V_b = I\!\left[E_{oc} - T\frac{\partial E_{oc}}{\partial T}\right] - V_T I
+$$
+
+Expanding and collecting:
+
+$$
+q = \underbrace{\frac{I}{V_b}(E_{oc} - V_T)}_{q_{irr}} \;-\; \underbrace{\frac{I}{V_b}\,T\frac{\partial E_{oc}}{\partial T}}_{q_{rev}} \tag{9}
+$$
+
+---
+
+## Two heat sources, two characters
+
+**Irreversible heat $q_{irr}$** comes from the total overpotential $(E_{oc} - V_T)$ — the voltage the cell failed to deliver because of ohmic resistance, charge-transfer activation energy at the electrode-electrolyte interface, and concentration polarisation as lithium depletes near the electrode surface. Since $(E_{oc} - V_T) \approx IR_{int}$, this term scales as $I^2$. It is always non-negative: a cell cannot have a terminal voltage above its open-circuit voltage during discharge.
+
+**Reversible heat $q_{rev}$** is not a dissipation. It is the heat the reaction must exchange with the environment to satisfy the Second Law, equal to $T\,\Delta S_{rxn}$ per mole of reaction (the reversible heat from the Clausius equality). A cell with zero internal resistance still has it. It scales linearly with $I$, so at low C-rates it dominates the quadratic $q_{irr}$, and its sign follows $\partial E_{oc}/\partial T$:
+
+| $\partial E_{oc}/\partial T$ | Physical meaning | Effect on heating |
 |---|---|---|
-| $> 0$ | Reaction is endothermic | $q_{rev} < 0$ — cell absorbs heat, total heating reduced |
-| $< 0$ | Reaction is exothermic | $q_{rev} > 0$ — cell releases extra heat on top of Joule heating |
+| positive | Intercalation is endothermic at this SOC | $q_{rev} < 0$ — cell absorbs heat, net heating reduced |
+| negative | Intercalation is exothermic at this SOC | $q_{rev} > 0$ — cell generates heat beyond Joule heating |
 
-The same cell can partially cool the environment at one SOC and add extra heat at another. Viswanathan et al. (2010) showed $q_{rev}$ is 20–40% of total heat at C/5 and below.
+Viswanathan et al. (2010) measured this effect across several chemistries and found $q_{rev}$ is 20–40% of total heat at C/5 and below. For graphite/NMC the entropic coefficient changes sign two to three times across SOC, so the same cell heats and partially cools at different points in a discharge cycle.
 
 ---
 
-## Numerical example
+## A worked example
 
-**18650 NMC/graphite at 1C, 50% SOC:**
+**18650 NMC/graphite cell, 1C discharge (3 A), 50% SOC:**
 
-| Parameter | Value |
+| Quantity | Value |
 |---|---|
-| $I$ | 3 A |
-| $V_b$ | $16.5\times10^{-6}$ m³ |
-| $E_{oc}$ | 3.85 V, $V_T$ = 3.72 V |
+| $E_{oc}$ | 3.85 V |
+| $V_T$ | 3.72 V |
 | $T$ | 298 K |
 | $\partial E_{oc}/\partial T$ | $-1.0\times10^{-4}$ V K⁻¹ |
+| $V_b$ | $16.5\times10^{-6}$ m³ |
 
 $$
-q_{irr} = \frac{3}{16.5\times10^{-6}} \times 0.13 = 23\,636\;\text{W m}^{-3}
+q_{irr} = \frac{3}{16.5\times10^{-6}} \times (3.85 - 3.72) = 23\,636\;\text{W m}^{-3}
 $$
 
 $$
@@ -167,13 +195,15 @@ $$
 q = 29\,054\;\text{W m}^{-3}
 $$
 
-A Joule-only model predicts 23 636 W m⁻³ — a 23% underestimate. At 80% SOC where $\partial E_{oc}/\partial T = +2\times10^{-4}$ V K⁻¹, the entropic term reverses and reduces total heat by 46%. This is not a small correction.
+The Joule-only model gives 23 636 W m⁻³ — a 23% underestimate. At 80% SOC where $\partial E_{oc}/\partial T = +2\times10^{-4}$ V K⁻¹, the entropic term reverses sign and the total drops to 12 800 W m⁻³ — 46% lower than Joule heating alone. This is not a correction; it is the dominant effect at those conditions.
 
 ---
 
-## Assumptions
+## Assumptions and validity
 
-The derivation uses: (1) closed system, no mass crosses the boundary; (2) only electrical work crosses, no shaft or magnetic work; (3) all current is Faradaic — no double-layer charging or side reactions; (4) condensed-phase approximation $\Delta U_{rxn} \approx \Delta H_{rxn}$; (5) steady state $dT/dt = 0$ (the transient generalisation is $\dot{Q}_{gen} = mC_p\,dT/dt + \dot{Q}_{out}$); (6) bulk SOC for $E_{oc}$ — the P2D model uses surface concentration instead; (7) uniform temperature and heat generation across $V_b$.
+The derivation assumes: the cell is a closed system (no mass flux across the boundary); the only work interaction is electrical (no shaft work); all current drives the intercalation reaction (no double-layer charging current or parasitic side reactions); electrode volume changes are negligible so $\Delta U_{rxn} \approx \Delta H_{rxn}$; the cell is at steady state (for the transient case, $\dot{Q}_{gen} = mC_p\,dT/dt + \dot{Q}_{out}$); and temperature and heat generation are spatially uniform throughout $V_b$.
+
+The most consequential limitation in practice is the bulk-SOC assumption: $E_{oc}$ and $\partial E_{oc}/\partial T$ are evaluated at the bulk state of charge rather than at the electrode surface. Under pulse discharge and drive-cycle loading, local surface SOC differs significantly from bulk, and Jokar et al. (2022) showed this causes systematic overestimation of heat generation. The P2D model avoids this by using surface concentration $c_{s,surf}$ directly.
 
 ---
 
@@ -183,7 +213,7 @@ The derivation uses: (1) closed system, no mass crosses the boundary; (2) only e
 
 2. V. V. Viswanathan et al., "Effect of entropy change of lithium intercalation in cathodes and anodes on Li-ion battery thermal management," *J. Power Sources*, 195(11), 3720–3729, 2010. DOI: 10.1016/j.jpowsour.2009.12.034.
 
-3. A. Jokar et al., "Evaluation of accuracy for Bernardi equation in estimating heat generation rate for continuous and pulse-discharge protocols," *Appl. Therm. Eng.*, 201, 117794, 2022. DOI: 10.1016/j.applthermaleng.2021.117794.
+3. A. Jokar et al., "Evaluation of accuracy for Bernardi equation in estimating heat generation rate for continuous and pulse-discharge protocols in LFP and NMC based Li-ion batteries," *Appl. Therm. Eng.*, 201, 117794, 2022. DOI: 10.1016/j.applthermaleng.2021.117794.
 
 4. G. L. Plett, *Battery Management Systems, Vol. 1: Battery Modeling*, Artech House, 2015.
 
