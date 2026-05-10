@@ -1,12 +1,12 @@
 ---
 title: 'Deriving the Bernardi Heat Generation Equation from First Principles'
 date: 2026-05-10
-description: Why Joule heating alone can be off by 20–40% — and how the First Law plus the Nernst equation give the complete picture in two terminal-measurable terms.
+description: Why Joule heating alone can be off by 20–40% — and how the First Law plus the Nernst equation give the complete picture in two terms you can measure with a voltmeter.
 #tags: [battery, thermal, modeling, thermodynamics]
 published: true
 ---
 
-The Bernardi equation (1985) gives the volumetric heat generation rate of a lithium-ion cell in terms of terminal measurements alone:
+The Bernardi equation (1985) gives the volumetric heat generation rate of a lithium-ion cell using only quantities you can measure at its terminals:
 
 $$
 q = \underbrace{\frac{I}{V_b}(E_{oc} - V_T)}_{q_{irr}} \;-\; \underbrace{\frac{I}{V_b}\,T\frac{\partial E_{oc}}{\partial T}}_{q_{rev}}
@@ -85,7 +85,7 @@ $$
 \boxed{\dot{H}_{rxn} = I\!\left[E_{oc} - T\frac{\partial E_{oc}}{\partial T}\right]} \tag{7}
 $$
 
-All quantities on the right are terminal-measurable.
+Every quantity on the right can be measured at the cell surface: current with an ammeter, $E_{oc}$ with a voltmeter after rest, $T$ with a thermocouple, $\partial E_{oc}/\partial T$ by recording OCV at two temperatures.
 
 ---
 
