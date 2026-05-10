@@ -95,10 +95,12 @@ The slope of OCV with temperature at fixed SOC is a direct measure of $\Delta S_
 
 The full cell: $\partial E_{oc}/\partial T = dU_{+}/dT - dU_{-}/dT$ (cathode minus anode). For NMC811/graphite (LG M50, measured by O'Regan et al., 2022):
 
-- **0–47% SOC** — the graphite anode dominates. At low lithiation ($x < 0.1$), graphite is in the dilute Stage 4 region: Li atoms have many equivalent sites, high configurational entropy. As Li is removed during discharge, entropy drops sharply → $dU_{-}/dT \gg 0$ → full-cell $\partial E_{oc}/\partial T < 0$ → extra heat on top of Joule heating.
-- **47–100% SOC** — graphite moves into Stage 2 and Stage 1 (ordered, single-phase). The anode entropy contribution shrinks; the NMC cathode (smooth, solid-solution) slightly dominates → $\partial E_{oc}/\partial T > 0$ → cell absorbs heat, reducing net $q$.
+Graphite intercalates lithium in ordered **staging phases**: in Stage $n$, Li occupies every $n$-th graphene layer. Stage 4 (few Li, $x < 0.12$) → Stage 3 → Stage 2 ($x \approx 0.25$–$0.5$) → Stage 1 ($x > 0.5$, fully every layer filled). Each stage is a distinct crystal structure with its own configurational entropy.
 
-The sign change near 47% SOC is a single crossing for this chemistry and cell. NMC811 contributes a small, smooth offset — it has no staging transitions. Other chemistries (e.g. LFP cathode) shift the crossing point.
+- **0–47% SOC** — graphite is in Stage 4 or transitioning to Stage 3. Li atoms have many equivalent inter-layer sites → high configurational entropy. Removing Li during discharge collapses this disorder sharply → $dU_{-}/dT \gg 0$ → full-cell $\partial E_{oc}/\partial T < 0$ → extra heat beyond Joule heating.
+- **47–100% SOC** — graphite is in Stage 2 / Stage 1, both well-ordered single-phase structures. Anode entropy contribution shrinks; NMC cathode (solid-solution, no staging) slightly dominates → $\partial E_{oc}/\partial T > 0$ → cell absorbs heat, reducing net $q$.
+
+The sign change near 47% SOC is a single crossing for this chemistry. NMC811 contributes a small, smooth offset throughout.
 
 **Enthalpy.** From $\Delta G_{rxn} = \Delta H_{rxn} - T\,\Delta S_{rxn}$, substitute Eq. 6 and Eq. 7:
 
