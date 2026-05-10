@@ -91,17 +91,14 @@ The slope of OCV with temperature at fixed SOC is a direct measure of $\Delta S_
 
 ### Why $\partial E_{oc}/\partial T$ changes sign with SOC
 
-![Schematic of entropic coefficient vs SOC for graphite/NMC, after Reynier et al. (2003) and Viswanathan et al. (2010)](/images/entropic-coefficient-soc.svg)
+![Entropic coefficient vs SOC for NMC811/graphite (LG M50). Top: individual electrode half-cell contributions. Bottom: full-cell dEoc/dT. Data from O'Regan et al. (2022).](/images/entropic-coefficient-soc.svg)
 
-Graphite stores lithium in discrete **staging phases**: Stage 1 (every graphite layer filled), Stage 2 (every other), Stage 3, and so on. At a transition between stages, two phases coexist and the lattice is partially disordered — many equivalent arrangements for the Li atoms. This maximises configurational entropy in the anode.
+The full cell: $\partial E_{oc}/\partial T = dU_{+}/dT - dU_{-}/dT$ (cathode minus anode). For NMC811/graphite (LG M50, measured by O'Regan et al., 2022):
 
-The sign of $\partial E_{oc}/\partial T = \Delta S_{rxn}/nF$ therefore depends on where in the graphite phase diagram the discharge is occurring:
+- **0–47% SOC** — the graphite anode dominates. At low lithiation ($x < 0.1$), graphite is in the dilute Stage 4 region: Li atoms have many equivalent sites, high configurational entropy. As Li is removed during discharge, entropy drops sharply → $dU_{-}/dT \gg 0$ → full-cell $\partial E_{oc}/\partial T < 0$ → extra heat on top of Joule heating.
+- **47–100% SOC** — graphite moves into Stage 2 and Stage 1 (ordered, single-phase). The anode entropy contribution shrinks; the NMC cathode (smooth, solid-solution) slightly dominates → $\partial E_{oc}/\partial T > 0$ → cell absorbs heat, reducing net $q$.
 
-- **At a staging transition** (e.g. Stage 2→1 near 40–55% SOC): anode entropy is high. Removing Li reduces that disorder → $\Delta S_{rxn} < 0$ → $\partial E_{oc}/\partial T < 0$ → extra heat.
-- **Within a single-phase plateau**: ordered lattice, small entropy change → $|\partial E_{oc}/\partial T|$ near zero.
-- **Dilute Stage 1** (high SOC): Li has many available sites, relatively disordered → removing Li increases order → $\Delta S_{rxn} > 0$ → $\partial E_{oc}/\partial T > 0$ → cell absorbs heat.
-
-The NMC cathode contribution is smooth and smaller in magnitude (solid-solution, no staging). The full-cell coefficient — the difference of the two electrodes — changes sign two to three times across SOC (Reynier et al., 2003; Viswanathan et al., 2010).
+The sign change near 47% SOC is a single crossing for this chemistry and cell. NMC811 contributes a small, smooth offset — it has no staging transitions. Other chemistries (e.g. LFP cathode) shift the crossing point.
 
 **Enthalpy.** From $\Delta G_{rxn} = \Delta H_{rxn} - T\,\Delta S_{rxn}$, substitute Eq. 6 and Eq. 7:
 
@@ -156,6 +153,6 @@ The Joule-only model ($q \approx I^2 R_{int}/V_b$) gives 23 636 W m⁻³ — a 2
 1. D. M. Bernardi, E. Pawlikowski, J. Newman, "A General Energy Balance for Battery Systems," *J. Electrochem. Soc.*, 132(1), 5–12, 1985. DOI: 10.1149/1.2113792.
 2. V. V. Viswanathan et al., "Effect of entropy change of lithium intercalation in cathodes and anodes on Li-ion battery thermal management," *J. Power Sources*, 195(11), 3720–3729, 2010. DOI: 10.1016/j.jpowsour.2009.12.034.
 3. A. Jokar et al., "Evaluation of accuracy for Bernardi equation under pulse-discharge protocols," *Appl. Therm. Eng.*, 201, 117794, 2022. DOI: 10.1016/j.applthermaleng.2021.117794.
-4. Y. Reynier, R. Yazami, B. Fultz, "The entropy and enthalpy of lithium intercalation into graphite," *J. Power Sources*, 119–121, 850–855, 2003. DOI: 10.1016/S0378-7753(03)00285-4.
+4. K. O'Regan, F. Brosa Planella, W. D. Widanage, E. Kendrick, "Thermal-electrochemical parameters of a high energy lithium-ion cylindrical battery," *Electrochimica Acta*, 425, 140700, 2022. DOI: 10.1016/j.electacta.2022.140700. — Source of the measured entropic coefficient fits used in the plot above.
 5. G. L. Plett, *Battery Management Systems, Vol. 1*, Artech House, 2015.
 6. J. Newman, K. E. Thomas-Alyea, *Electrochemical Systems*, 3rd ed., Wiley, 2004.
