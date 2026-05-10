@@ -63,47 +63,35 @@ Heat generated = enthalpy released by reaction − electrical work extracted. $\
 
 ## $\dot{H}_{rxn}$ in measurable form
 
-**Nernst equation.** The Clausius inequality limits the maximum non-PV work a reaction can deliver at constant $T$ and $P$:
+**Nernst.** The Clausius inequality gives $W'_{max} = -\Delta G_{rxn}$. Per mole, $n$ electrons flow through $E_{oc}$, so $W'_{max} = nFE_{oc}$. Equating:
 
 $$
-W'_{max} = -\Delta G_{rxn} \tag{5}
+E_{oc} = \frac{-\Delta G_{rxn}}{nF} \tag{5}
 $$
 
-Per mole of reaction, $n$ moles of electrons pass through the open-circuit voltage $E_{oc}$, so $W'_{max} = nFE_{oc}$. Equating with Eq. 5:
+OCV is Gibbs energy per coulomb — voltage is thermodynamics in electrical units.
+
+**Entropic coefficient.** The Gibbs relation $(\partial G/\partial T)_P = -S$ applied to the reaction gives $(\partial\Delta G_{rxn}/\partial T)_P = -\Delta S_{rxn}$. Substituting Eq. 5:
 
 $$
-E_{oc} = \frac{-\Delta G_{rxn}}{nF} \tag{6}
+\frac{\partial E_{oc}}{\partial T} = \frac{\Delta S_{rxn}}{nF} \tag{6}
 $$
 
-OCV is Gibbs free energy per coulomb transferred. Voltage is thermodynamics expressed in electrical units.
+The OCV slope with temperature at fixed SOC directly measures $\Delta S_{rxn}$ — no calorimetry needed.
 
-**Entropic coefficient.** The Gibbs relation at constant pressure is exact: $(\partial G/\partial T)_P = -S$. Applied to the reaction, $(\partial\Delta G_{rxn}/\partial T)_P = -\Delta S_{rxn}$. Substituting Eq. 6:
-
-$$
-\frac{\partial E_{oc}}{\partial T} = \frac{\Delta S_{rxn}}{nF} \tag{7}
-$$
-
-The OCV slope with temperature at fixed SOC is a direct measure of reaction entropy — measurable with only a voltmeter and thermostat.
-
-**Enthalpy.** From $\Delta G_{rxn} = \Delta H_{rxn} - T\,\Delta S_{rxn}$, substitute Eq. 6 ($\Delta G_{rxn} = -nFE_{oc}$) and Eq. 7 ($\Delta S_{rxn} = nF\,\partial E_{oc}/\partial T$):
+**Enthalpy.** Substitute Eq. 5 and Eq. 6 into $\Delta G_{rxn} = \Delta H_{rxn} - T\Delta S_{rxn}$, then multiply by $-\dot{N}_{Li} = -I/nF$ (Eq. 2); $nF$ cancels:
 
 $$
-\Delta H_{rxn} = nF\!\left[-E_{oc} + T\frac{\partial E_{oc}}{\partial T}\right]
+\boxed{\dot{H}_{rxn} = I\!\left[E_{oc} - T\frac{\partial E_{oc}}{\partial T}\right]} \tag{7}
 $$
 
-Multiply by $-\dot{N}_{Li} = -I/nF$ (Eq. 2); $nF$ cancels:
-
-$$
-\boxed{\dot{H}_{rxn} = I\!\left[E_{oc} - T\frac{\partial E_{oc}}{\partial T}\right]} \tag{8}
-$$
-
-Everything on the right is terminal-measurable: current, OCV after rest, temperature, OCV slope over temperature.
+All quantities on the right are terminal-measurable.
 
 ---
 
 ## The Bernardi equation
 
-Write $\dot{Q}_{gen} = q\,V_b$. Substitute Eq. 8 into Eq. 4 and divide by $V_b$:
+Write $\dot{Q}_{gen} = q\,V_b$. Substitute Eq. 7 into Eq. 4 and divide by $V_b$:
 
 $$
 \boxed{q = \frac{I}{V_b}(E_{oc} - V_T) - \frac{I}{V_b}\,T\frac{\partial E_{oc}}{\partial T}} \tag{9}
