@@ -91,7 +91,7 @@ The slope of OCV with temperature at fixed SOC is a direct measure of $\Delta S_
 
 ### Why $\partial E_{oc}/\partial T$ changes sign with SOC
 
-![Full-cell entropic coefficient vs SOC for NMC811/graphite (LG M50). Data from O'Regan et al. (2022).](/images/entropic-coefficient-soc.svg)
+![Entropic coefficient vs SOC for NMC811/graphite (LG M50). Top: individual electrode contributions. Bottom: full-cell dEoc/dT. Data from O'Regan et al. (2022).](/images/entropic-coefficient-soc.svg)
 
 The full cell: $\partial E_{oc}/\partial T = dU_{+}/dT - dU_{-}/dT$ (cathode minus anode). For NMC811/graphite (LG M50, measured by O'Regan et al., 2022):
 
