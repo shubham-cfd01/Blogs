@@ -87,7 +87,23 @@ $$
 \frac{\partial E_{oc}}{\partial T} = \frac{\Delta S_{rxn}}{nF} \tag{7}
 $$
 
-The slope of OCV with temperature at fixed SOC is a direct measure of $\Delta S_{rxn}$.
+The slope of OCV with temperature at fixed SOC is a direct measure of $\Delta S_{rxn}$. In practice: charge to the target SOC, rest until equilibrium, record OCV at two temperatures, divide $\Delta E_{oc}$ by $\Delta T$.
+
+### Why $\partial E_{oc}/\partial T$ changes sign across SOC
+
+![Entropic coefficient vs SOC for graphite/NMC, showing sign changes at graphite staging transitions](/images/entropic-coefficient-soc.svg)
+
+The shape is governed by the **configurational entropy of lithium in graphite**. Graphite stores lithium in discrete staging phases — ordered crystal structures where Li fills every layer (Stage 1), every other layer (Stage 2), every third layer (Stage 3), and so on. At a staging transition, two phases coexist and the lattice is partially disordered: many equivalent ways for Li atoms to distribute across the partially-filled layers. High disorder means high configurational entropy.
+
+During discharge, Li leaves graphite. The entropy change $\Delta S_{rxn}$ depends on whether the graphite being depleted is in a high-entropy (disordered, transition region) or low-entropy (ordered, single-phase) state:
+
+- **Inside a staging transition** (e.g., Stage 2 → Stage 1 near 40–55% SOC): graphite is highly disordered. Removing Li lowers the anode entropy sharply → $\Delta S_{rxn} < 0$ → $\partial E_{oc}/\partial T < 0$. Reaction releases extra heat beyond Joule heating.
+- **Inside a single-phase plateau** (pure Stage 1 or pure Stage 2): graphite is ordered. Removing Li barely changes entropy → $|\Delta S_{rxn}|$ small → $|\partial E_{oc}/\partial T|$ near zero.
+- **At the dilute end of Stage 1** (high SOC, near full): Li atoms have many available sites and are relatively disordered — removing one increases order → $\Delta S_{rxn} > 0$ → $\partial E_{oc}/\partial T > 0$. Cell absorbs heat; net heating is reduced.
+
+The cathode (NMC) contributes a smoother, mostly negative offset — its solid-solution behaviour lacks sharp staging. The full-cell $\partial E_{oc}/\partial T$ is the difference between the two electrodes' contributions, which is why the sign changes two to three times across the SOC range for graphite/NMC.
+
+**Practical consequence:** at 80% SOC a cell might absorb enough environmental heat to reduce $q$ by 40–50% relative to the Joule estimate. At 40% SOC the same cell generates 20% more heat than $I^2 R$ predicts. Both effects are captured by the $q_{rev}$ term and invisible to any model that uses Joule heating alone.
 
 **Enthalpy.** From $\Delta G_{rxn} = \Delta H_{rxn} - T\,\Delta S_{rxn}$, substitute Eq. 6 and Eq. 7:
 
