@@ -1,6 +1,7 @@
 ---
 title: 'Deriving the Bernardi Heat Generation Equation from First Principles'
 date: 2026-05-10
+description: Why Joule heating alone can be off by 20–40% — and how the First Law plus the Nernst equation give the complete picture in two terminal-measurable terms.
 #tags: [battery, thermal, modeling, thermodynamics]
 published: true
 ---
