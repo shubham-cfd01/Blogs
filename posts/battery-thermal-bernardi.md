@@ -87,23 +87,21 @@ $$
 \frac{\partial E_{oc}}{\partial T} = \frac{\Delta S_{rxn}}{nF} \tag{7}
 $$
 
-The slope of OCV with temperature at fixed SOC is a direct measure of $\Delta S_{rxn}$. In practice: charge to the target SOC, rest until equilibrium, record OCV at two temperatures, divide $\Delta E_{oc}$ by $\Delta T$.
+The slope of OCV with temperature at fixed SOC is a direct measure of $\Delta S_{rxn}$.
 
-### Why $\partial E_{oc}/\partial T$ changes sign across SOC
+### Why $\partial E_{oc}/\partial T$ changes sign with SOC
 
-![Entropic coefficient vs SOC for graphite/NMC, showing sign changes at graphite staging transitions](/images/entropic-coefficient-soc.svg)
+![Schematic of entropic coefficient vs SOC for graphite/NMC, after Reynier et al. (2003) and Viswanathan et al. (2010)](/images/entropic-coefficient-soc.svg)
 
-The shape is governed by the **configurational entropy of lithium in graphite**. Graphite stores lithium in discrete staging phases — ordered crystal structures where Li fills every layer (Stage 1), every other layer (Stage 2), every third layer (Stage 3), and so on. At a staging transition, two phases coexist and the lattice is partially disordered: many equivalent ways for Li atoms to distribute across the partially-filled layers. High disorder means high configurational entropy.
+Graphite stores lithium in discrete **staging phases**: Stage 1 (every graphite layer filled), Stage 2 (every other), Stage 3, and so on. At a transition between stages, two phases coexist and the lattice is partially disordered — many equivalent arrangements for the Li atoms. This maximises configurational entropy in the anode.
 
-During discharge, Li leaves graphite. The entropy change $\Delta S_{rxn}$ depends on whether the graphite being depleted is in a high-entropy (disordered, transition region) or low-entropy (ordered, single-phase) state:
+The sign of $\partial E_{oc}/\partial T = \Delta S_{rxn}/nF$ therefore depends on where in the graphite phase diagram the discharge is occurring:
 
-- **Inside a staging transition** (e.g., Stage 2 → Stage 1 near 40–55% SOC): graphite is highly disordered. Removing Li lowers the anode entropy sharply → $\Delta S_{rxn} < 0$ → $\partial E_{oc}/\partial T < 0$. Reaction releases extra heat beyond Joule heating.
-- **Inside a single-phase plateau** (pure Stage 1 or pure Stage 2): graphite is ordered. Removing Li barely changes entropy → $|\Delta S_{rxn}|$ small → $|\partial E_{oc}/\partial T|$ near zero.
-- **At the dilute end of Stage 1** (high SOC, near full): Li atoms have many available sites and are relatively disordered — removing one increases order → $\Delta S_{rxn} > 0$ → $\partial E_{oc}/\partial T > 0$. Cell absorbs heat; net heating is reduced.
+- **At a staging transition** (e.g. Stage 2→1 near 40–55% SOC): anode entropy is high. Removing Li reduces that disorder → $\Delta S_{rxn} < 0$ → $\partial E_{oc}/\partial T < 0$ → extra heat.
+- **Within a single-phase plateau**: ordered lattice, small entropy change → $|\partial E_{oc}/\partial T|$ near zero.
+- **Dilute Stage 1** (high SOC): Li has many available sites, relatively disordered → removing Li increases order → $\Delta S_{rxn} > 0$ → $\partial E_{oc}/\partial T > 0$ → cell absorbs heat.
 
-The cathode (NMC) contributes a smoother, mostly negative offset — its solid-solution behaviour lacks sharp staging. The full-cell $\partial E_{oc}/\partial T$ is the difference between the two electrodes' contributions, which is why the sign changes two to three times across the SOC range for graphite/NMC.
-
-**Practical consequence:** at 80% SOC a cell might absorb enough environmental heat to reduce $q$ by 40–50% relative to the Joule estimate. At 40% SOC the same cell generates 20% more heat than $I^2 R$ predicts. Both effects are captured by the $q_{rev}$ term and invisible to any model that uses Joule heating alone.
+The NMC cathode contribution is smooth and smaller in magnitude (solid-solution, no staging). The full-cell coefficient — the difference of the two electrodes — changes sign two to three times across SOC (Reynier et al., 2003; Viswanathan et al., 2010).
 
 **Enthalpy.** From $\Delta G_{rxn} = \Delta H_{rxn} - T\,\Delta S_{rxn}$, substitute Eq. 6 and Eq. 7:
 
@@ -158,5 +156,6 @@ The Joule-only model ($q \approx I^2 R_{int}/V_b$) gives 23 636 W m⁻³ — a 2
 1. D. M. Bernardi, E. Pawlikowski, J. Newman, "A General Energy Balance for Battery Systems," *J. Electrochem. Soc.*, 132(1), 5–12, 1985. DOI: 10.1149/1.2113792.
 2. V. V. Viswanathan et al., "Effect of entropy change of lithium intercalation in cathodes and anodes on Li-ion battery thermal management," *J. Power Sources*, 195(11), 3720–3729, 2010. DOI: 10.1016/j.jpowsour.2009.12.034.
 3. A. Jokar et al., "Evaluation of accuracy for Bernardi equation under pulse-discharge protocols," *Appl. Therm. Eng.*, 201, 117794, 2022. DOI: 10.1016/j.applthermaleng.2021.117794.
-4. G. L. Plett, *Battery Management Systems, Vol. 1*, Artech House, 2015.
-5. J. Newman, K. E. Thomas-Alyea, *Electrochemical Systems*, 3rd ed., Wiley, 2004.
+4. Y. Reynier, R. Yazami, B. Fultz, "The entropy and enthalpy of lithium intercalation into graphite," *J. Power Sources*, 119–121, 850–855, 2003. DOI: 10.1016/S0378-7753(03)00285-4.
+5. G. L. Plett, *Battery Management Systems, Vol. 1*, Artech House, 2015.
+6. J. Newman, K. E. Thomas-Alyea, *Electrochemical Systems*, 3rd ed., Wiley, 2004.
