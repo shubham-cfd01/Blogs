@@ -63,7 +63,7 @@ Heat generated = enthalpy released by reaction − electrical work extracted. $\
 
 ## $\dot{H}_{rxn}$ in measurable form
 
-**Nernst.** The Clausius inequality gives $W'_{max} = -\Delta G_{rxn}$. Per mole, $n$ electrons flow through $E_{oc}$, so $W'_{max} = nFE_{oc}$. Equating:
+**Nernst.** Define the Gibbs free energy $G \equiv H - TS$ — the portion of a system's energy available to do useful work at constant temperature and pressure. For the discharge reaction, $\Delta G_{rxn} = G_{\text{products}} - G_{\text{reactants}} < 0$ (spontaneous). The Clausius inequality shows the maximum non-PV work the reaction can deliver is $W'_{max} = -\Delta G_{rxn}$. Per mole, $n$ electrons flow through $E_{oc}$, so $W'_{max} = nFE_{oc}$. Equating:
 
 $$
 E_{oc} = \frac{-\Delta G_{rxn}}{nF} \tag{5}
